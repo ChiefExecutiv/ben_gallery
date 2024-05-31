@@ -7,7 +7,7 @@
 - [x] tidy up build process
 - [x] Actually set up a database
 - [x] Connect the database to the UI
-- [] Add authentication
+- [x] Add authentication
 - [] Add Image Upload
 - [] Error management
 - [] Routing/image page (parallel route)
