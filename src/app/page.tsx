@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { db } from "~/server/db";
 
+export const dynamic = "force-dynamic"; // So that every time a change is made in our database, the page's content is updated
+
 const mockUrls = [
   "https://utfs.io/f/7d6745f0-1db8-40d9-bc98-7443ae3a2b6e-v2xgjn.webp",
   "https://utfs.io/f/70618054-df3e-4e7c-8751-f76b2cff5954-v1tvgd.webp",
@@ -24,7 +26,7 @@ export default async function HomePage() {
     <main className="">
 
       <div className="flex flex-wrap ">
-        
+
         {posts.map((post) => (
           <div key={post.id}>
             {post.name}
