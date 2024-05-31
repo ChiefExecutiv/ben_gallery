@@ -3,6 +3,7 @@ import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic"; // So that every time a change is made in our database, the page's content is updated
 
+/*
 const mockUrls = [
   "https://utfs.io/f/7d6745f0-1db8-40d9-bc98-7443ae3a2b6e-v2xgjn.webp",
   "https://utfs.io/f/70618054-df3e-4e7c-8751-f76b2cff5954-v1tvgd.webp",
@@ -14,30 +15,25 @@ const mockUrls = [
 const mockImages = mockUrls.map((url, index) => ({
   id: index + 1,
   url
-}))
+}))*/
 
 export default async function HomePage() {
 
-  // Getting our posts from the database
-  const posts = await db.query.posts.findMany();
-  console.log(posts)
-
+  // Getting our images from the database
+  const images = await db.query.images.findMany({
+    orderBy:(model, { desc }) => desc(model.id) // Ordering them in descending order --newest first
+  });
+  
   return (
     <main className="">
 
       <div className="flex flex-wrap ">
 
-        {posts.map((post) => (
-          <div key={post.id}>
-            {post.name}
-          </div>
-        ))
-        }
-
         {
-          [...mockImages, ...mockImages, ...mockImages].map((image, index) => (
+          [...images, ...images, ...images].map((image, index) => (
             <div key={image.id + "-" + index} className="w-1/2 p-4">
               <img src={image.url} alt="image" />
+              <div>{image.name}</div>
             </div>
           ))}
       </div>
